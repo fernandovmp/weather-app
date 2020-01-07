@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -6,13 +7,19 @@ namespace WeatherApp.Models
 {
     public class WeatherMainInfo
     {
-        public float Temp { get; set; }
-        public float TempMin { get; set; }
-        public float TempMax { get; set; }
+        [JsonProperty("temp")]
+        public float Temperature { get; set; }
+        [JsonProperty("temp_min")]
+        public float MinimumTemperature { get; set; }
+        [JsonProperty("temp_max")]
+        public float MaximumTemperature { get; set; }
+        [JsonProperty("feels_like")]
         public float FeelsLike { get; set; }
         public float Pressure { get; set; }
         public int Humidity { get; set; }
+        [JsonProperty("sea_level")]
         public float SeaLevel { get; set; }
-        public float GrndLevel { get; set; }
+        [JsonProperty("grnd_level")]
+        public float GroundLevel { get; set; }
     }
 }

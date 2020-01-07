@@ -6,7 +6,7 @@ namespace WeatherApp.Models
 {
     public class Coordinates
     {
-        public float Lon { get; set; }
-        public float Lat { get; set; }
+        public double Lon { get; set; }
+        public double Lat { get; set; }
     }
 }
