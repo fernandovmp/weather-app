@@ -13,7 +13,7 @@ namespace WeatherApp.Services
         private readonly HttpClient _client;
         private readonly string _apiKey;
 
-        private const string API_BASE_URI = "http://api.openweathermap.org/data/2.5";
+        private const string API_BASE_URI = "https://api.openweathermap.org/data/2.5";
         private const string CURRENT_WEATHER_ENDPOINT = API_BASE_URI + "/weather?lat={0}&lon={1}&APPID={2}";
         private const string FORECAST_ENDPOINT = API_BASE_URI + "/forecast?lat={0}&lon={1}&APPID={2}";
 
