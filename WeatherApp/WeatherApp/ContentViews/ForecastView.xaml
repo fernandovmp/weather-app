@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:converters="clr-namespace:WeatherApp.Converters"
+             xmlns:lottie="clr-namespace:Lottie.Forms;assembly=Lottie.Forms"
+             mc:Ignorable="d"
+             x:Class="WeatherApp.ContentViews.ForecastView"
+             HeightRequest="120">
+    <ContentView.Resources>
+        <Style TargetType="Label">
+            <Setter Property="FontAttributes" Value="Bold"/>
+            <Setter Property="FontSize" Value="Medium"/>
+            <Setter Property="HorizontalTextAlignment" Value="Center"/>
+            <Setter Property="TextColor" Value="Black"/>
+        </Style>
+        <converters:StringToDateConverter x:Key="StringToDate"/>
+    </ContentView.Resources>
+    <ContentView.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="25"/>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="25"/>
+            </Grid.RowDefinitions>
+            <Label 
+                Text="{Binding Weather.DateText, Converter={StaticResource StringToDate}, StringFormat='{0:ddd}'}"
+            />
+            <lottie:AnimationView
+                Grid.Row="1"
+                AutoPlay="True"
+                Loop="True"
+                Animation="{Binding Weather.Weather[0].Icon, StringFormat='{0}.json'}"
+            />
+            <Label 
+                Grid.Row="2"
+                Text="{Binding Weather.Main.MaximumTemperature, StringFormat='{0:F1} C°'}"
+            />
+        </Grid>
+    </ContentView.Content>
+</ContentView>
