@@ -67,8 +67,38 @@
     <None Include="Entitlements.plist" />
     <None Include="Info.plist" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <BundleResource Include="Resources\Roboto-Regular.ttf" />
+    <BundleResource Include="Resources\01d.json" />
+    <BundleResource Include="Resources\01n.json" />
+    <BundleResource Include="Resources\02d.json" />
+    <BundleResource Include="Resources\02n.json" />
+    <BundleResource Include="Resources\03d.json" />
+    <BundleResource Include="Resources\04d.json" />
+    <BundleResource Include="Resources\10d.json" />
+    <BundleResource Include="Resources\10n.json" />
+    <BundleResource Include="Resources\11d.json" />
+    <BundleResource Include="Resources\13d.json" />
+    <BundleResource Include="Resources\50d.json" />
   </ItemGroup>
   <ItemGroup>
+    <ImageAsset Include="Assets.xcassets\water_outline.imageset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\weather_cloudy.imageset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\weather_windy.imageset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\water_outline.imageset\water-outline.pdf">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\weather_cloudy.imageset\weather-cloudy.pdf">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\weather_windy.imageset\weather-windy.pdf">
+      <Visible>false</Visible>
+    </ImageAsset>
     <InterfaceDefinition Include="Resources\LaunchScreen.storyboard" />
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json">
       <Visible>false</Visible>
@@ -122,6 +152,9 @@
     <Reference Include="System.Numerics.Vectors" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="Com.Airbnb.Xamarin.Forms.Lottie">
+      <Version>3.0.3</Version>
+    </PackageReference>
     <PackageReference Include="Mobile.BuildTools">
       <Version>1.4.0.638</Version>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
