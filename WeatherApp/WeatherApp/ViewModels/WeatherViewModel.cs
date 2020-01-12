@@ -15,6 +15,11 @@ namespace WeatherApp.ViewModels
     {
         private readonly IWeatherService _weatherService;
         private WeatherData _currentWeather;
+        private WeatherData _forecastDayOne;
+        private WeatherData _forecastDayTwo;
+        private WeatherData _forecastDayThree;
+        private WeatherData _forecastDayFour;
+        private City _city;
         private bool _isFetchingWeather;
         private bool _isFetchingForecast;
 
@@ -23,6 +28,8 @@ namespace WeatherApp.ViewModels
             _weatherService = weatherService;
             DayForecast = new ObservableCollection<WeatherData>();
             Forecast = new ObservableCollection<WeatherData>();
+            Task.Run(() => GetWeatherAsync());
+            Task.Run(() => GetForecastAsync());
         }
 
         public WeatherData CurrentWeather
@@ -30,8 +37,33 @@ namespace WeatherApp.ViewModels
             get => _currentWeather;
             set => SetProperty(ref _currentWeather, value);
         }
+        public City City
+        {
+            get => _city;
+            private set => SetProperty(ref _city, value);
+        }
         public ObservableCollection<WeatherData> DayForecast { get; }
         public ObservableCollection<WeatherData> Forecast { get; }
+        public WeatherData ForecastDayOne
+        {
+            get => _forecastDayOne;
+            set => SetProperty(ref _forecastDayOne, value);
+        }
+        public WeatherData ForecastDayTwo
+        {
+            get => _forecastDayTwo;
+            set => SetProperty(ref _forecastDayTwo, value);
+        }
+        public WeatherData ForecastDayThree
+        {
+            get => _forecastDayThree;
+            set => SetProperty(ref _forecastDayThree, value);
+        }
+        public WeatherData ForecastDayFour
+        {
+            get => _forecastDayFour;
+            set => SetProperty(ref _forecastDayFour, value);
+        }
         public bool IsFetchingWeather
         {
             get => _isFetchingWeather;
@@ -118,13 +150,14 @@ namespace WeatherApp.ViewModels
                 return;
             }
             Forecast forecast = await _weatherService.GetWeatherForecastAsync(coordinates);
+            City = forecast.City;
             Forecast.Clear();
             DayForecast.Clear();
             var currentData = DateTime.Now;
             foreach (WeatherData weather in forecast.List)
             {
                 var date = DateTime.Parse(weather.DateText);
-                if(date.Day == currentData.Day)
+                if (date.Day == currentData.Day)
                 {
                     DayForecast.Add(weather);
                     continue;
@@ -134,6 +167,10 @@ namespace WeatherApp.ViewModels
                     Forecast.Add(weather);
                 }
             }
+            ForecastDayOne = Forecast[0];
+            ForecastDayTwo = Forecast[1];
+            ForecastDayThree = Forecast[2];
+            ForecastDayFour = Forecast[3];
             IsFetchingForecast = false;
         }
 

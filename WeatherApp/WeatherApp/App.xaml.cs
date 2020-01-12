@@ -2,6 +2,7 @@
 using System.Net.Http;
 using DryIoc;
 using WeatherApp.Helpers;
+using WeatherApp.Pages;
 using WeatherApp.Services;
 using WeatherApp.ViewModels;
 using Xamarin.Forms;
@@ -15,7 +16,7 @@ namespace WeatherApp
         {
             InitializeComponent();
             SetupDependencyContainer();
-            MainPage = new MainPage();
+            MainPage = new WeatherPage();
         }
 
         public IContainer Container { get; private set; }

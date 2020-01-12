@@ -1,0 +1,114 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:viewmodels="clr-namespace:WeatherApp.ViewModels"
+             xmlns:views="clr-namespace:WeatherApp.ContentViews"
+             xmlns:lottie="clr-namespace:Lottie.Forms;assembly=Lottie.Forms"
+             mc:Ignorable="d"
+             x:Class="WeatherApp.Pages.WeatherPage"
+             >
+    <ContentPage.Resources>
+        <Style TargetType="Label">
+            <Setter Property="TextColor" Value="Black" />
+            <Setter Property="FontFamily" Value="{OnPlatform 
+                Android='Roboto-Regular.tff#Roboto-Regular',
+                iOS='Roboto-Regular'}"
+            />
+        </Style>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <StackLayout>
+            <Grid Margin="40, 40, 40, 20">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="120"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Label
+                    Grid.ColumnSpan="2"
+                    FontSize="Title"
+                    HorizontalTextAlignment="Center"
+                    TextColor="Black"
+                >
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <FormattedString.Spans>
+                                <Span Text="Weather in "/>
+                                <Span Text="{Binding City.Name}"/>
+                                <Span Text="{Binding City.Country, StringFormat=', {0}'}"/>
+                            </FormattedString.Spans>
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+                <lottie:AnimationView
+                    Grid.Row="1"
+                    AutoPlay="True"
+                    Loop="True"
+                    Animation="{Binding CurrentWeather.Weather[0].Icon, StringFormat='{0}.json'}"
+                />
+                <Label
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    HorizontalTextAlignment="Center"
+                    VerticalOptions="Center"
+                >
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <FormattedString.Spans>
+                                <Span
+                                    FontSize="Large"
+                                    Text="{Binding CurrentWeather.Main.Temperature, StringFormat='{0:F1} C°'}"
+                                />
+                                <Span 
+                                    FontSize="Medium"
+                                    Text="{Binding CurrentWeather.Weather[0].Description, StringFormat='&#10;{0}'}"
+                                />
+                            </FormattedString.Spans>
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+            </Grid>
+            <Grid Margin="40, 0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <views:MeasurementView
+                    Icon="weather_windy"
+                    Value="{Binding CurrentWeather.Wind.Speed, StringFormat='{0} m/s'}"
+                    Text="Wind"
+                />
+                <views:MeasurementView
+                    Grid.Column="1"
+                    Icon="water_outline"
+                    Value="{Binding CurrentWeather.Main.Humidity, StringFormat='{0}%'}"
+                    Text="Humidity"
+                />
+                <views:MeasurementView
+                    Grid.Column="2"
+                    Icon="weather_cloudy"
+                    Value="{Binding CurrentWeather.Clouds.All, StringFormat='{0}%'}"
+                    Text="Clouds"
+                />
+            </Grid>
+            <Grid Margin="20">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <views:ForecastView Weather="{Binding ForecastDayOne}"/>
+                <views:ForecastView Weather="{Binding ForecastDayTwo}" Grid.Column="1"/>
+                <views:ForecastView Weather="{Binding ForecastDayThree}" Grid.Column="2"/>
+                <views:ForecastView Weather="{Binding ForecastDayFour}" Grid.Column="3"/>
+            </Grid>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
