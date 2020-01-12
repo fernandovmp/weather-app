@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="WeatherApp.ContentViews.MeasurementView">
+    <ContentView.Content>
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="60"/>
+                <RowDefinition Height="20"/>
+                <RowDefinition Height="25"/>
+            </Grid.RowDefinitions>
+            <Image Source="{Binding Icon}"/>
+            <Label
+                Grid.Row="1"
+                FontSize="Medium"
+                HorizontalTextAlignment="Center"
+                VerticalTextAlignment="Center"
+                Text="{Binding Value}"
+            />
+            <Label
+                Grid.Row="2"
+                FontSize="Medium"
+                HorizontalTextAlignment="Center"
+                VerticalTextAlignment="Center"
+                Text="{Binding Text}"
+            />
+        </Grid>
+    </ContentView.Content>
+</ContentView>
