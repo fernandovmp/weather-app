@@ -45,11 +45,9 @@
                         </FormattedString>
                     </Label.FormattedText>
                 </Label>
-                <lottie:AnimationView
+                <views:WeatherAnimationView
                     Grid.Row="1"
-                    AutoPlay="True"
-                    Loop="True"
-                    Animation="{Binding CurrentWeather.Weather[0].Icon, StringFormat='{0}.json'}"
+                    Animation="{Binding CurrentWeather.Weather[0].Icon}"
                 />
                 <Label
                     Grid.Row="1"

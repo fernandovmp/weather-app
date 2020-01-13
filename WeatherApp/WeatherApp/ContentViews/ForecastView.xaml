@@ -5,6 +5,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:converters="clr-namespace:WeatherApp.Converters"
              xmlns:lottie="clr-namespace:Lottie.Forms;assembly=Lottie.Forms"
+             xmlns:local="clr-namespace:WeatherApp.ContentViews"
              mc:Ignorable="d"
              x:Class="WeatherApp.ContentViews.ForecastView"
              HeightRequest="120">
@@ -27,11 +28,10 @@
             <Label 
                 Text="{Binding Weather.DateText, Converter={StaticResource StringToDate}, StringFormat='{0:ddd}'}"
             />
-            <lottie:AnimationView
+            <local:WeatherAnimationView
                 Grid.Row="1"
-                AutoPlay="True"
-                Loop="True"
-                Animation="{Binding Weather.Weather[0].Icon, StringFormat='{0}.json'}"
+                Animation="{Binding Weather.Weather[0].Icon}"
+                OnlyDayAnimation="True"
             />
             <Label 
                 Grid.Row="2"
