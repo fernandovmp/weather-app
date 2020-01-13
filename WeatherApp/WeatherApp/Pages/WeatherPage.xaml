@@ -71,7 +71,7 @@
                     </Label.FormattedText>
                 </Label>
             </Grid>
-            <Grid Margin="40, 0">
+            <Grid Margin="80, 0">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>

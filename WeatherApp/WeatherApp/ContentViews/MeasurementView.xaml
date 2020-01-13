@@ -8,21 +8,21 @@
     <ContentView.Content>
         <Grid Grid.Column="1">
             <Grid.RowDefinitions>
-                <RowDefinition Height="60"/>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="15"/>
                 <RowDefinition Height="20"/>
-                <RowDefinition Height="25"/>
             </Grid.RowDefinitions>
             <Image Source="{Binding Icon}"/>
             <Label
                 Grid.Row="1"
-                FontSize="Medium"
+                FontSize="Small"
                 HorizontalTextAlignment="Center"
                 VerticalTextAlignment="Center"
                 Text="{Binding Value}"
             />
             <Label
                 Grid.Row="2"
-                FontSize="Medium"
+                FontSize="Small"
                 HorizontalTextAlignment="Center"
                 VerticalTextAlignment="Center"
                 Text="{Binding Text}"
