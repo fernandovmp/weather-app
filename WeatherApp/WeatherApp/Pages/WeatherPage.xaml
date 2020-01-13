@@ -20,57 +20,62 @@
     </ContentPage.Resources>
     <ContentPage.Content>
         <StackLayout>
-            <Grid Margin="40, 40, 40, 20">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="120"/>
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
-                <Label
-                    Grid.ColumnSpan="2"
-                    FontSize="Title"
-                    HorizontalTextAlignment="Center"
-                    TextColor="Black"
-                >
-                    <Label.FormattedText>
-                        <FormattedString>
-                            <FormattedString.Spans>
-                                <Span Text="Weather in "/>
-                                <Span Text="{Binding City.Name}"/>
-                                <Span Text="{Binding City.Country, StringFormat=', {0}'}"/>
-                            </FormattedString.Spans>
-                        </FormattedString>
-                    </Label.FormattedText>
-                </Label>
-                <views:WeatherAnimationView
-                    Grid.Row="1"
-                    Animation="{Binding CurrentWeather.Weather[0].Icon}"
-                />
-                <Label
-                    Grid.Row="1"
-                    Grid.Column="1"
-                    HorizontalTextAlignment="Center"
-                    VerticalOptions="Center"
-                >
-                    <Label.FormattedText>
-                        <FormattedString>
-                            <FormattedString.Spans>
-                                <Span
-                                    FontSize="Large"
-                                    Text="{Binding CurrentWeather.Main.Temperature, StringFormat='{0:F1} C°'}"
-                                />
-                                <Span 
-                                    FontSize="Medium"
-                                    Text="{Binding CurrentWeather.Weather[0].Description, StringFormat='&#10;{0}'}"
-                                />
-                            </FormattedString.Spans>
-                        </FormattedString>
-                    </Label.FormattedText>
-                </Label>
-            </Grid>
+            <views:ActivityContainerView
+                Margin="40, 40, 40, 20"
+                IsLoading="{Binding IsFetchingWeather}"
+            >
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="120"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Label
+                        Grid.ColumnSpan="2"
+                        FontSize="Title"
+                        HorizontalTextAlignment="Center"
+                        TextColor="Black"
+                    >
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <FormattedString.Spans>
+                                    <Span Text="Weather in "/>
+                                    <Span Text="{Binding City.Name}"/>
+                                    <Span Text="{Binding City.Country, StringFormat=', {0}'}"/>
+                                </FormattedString.Spans>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                    <views:WeatherAnimationView
+                        Grid.Row="1"
+                        Animation="{Binding CurrentWeather.Weather[0].Icon}"
+                    />
+                    <Label
+                        Grid.Row="1"
+                        Grid.Column="1"
+                        HorizontalTextAlignment="Center"
+                        VerticalOptions="Center"
+                    >
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <FormattedString.Spans>
+                                    <Span
+                                        FontSize="Large"
+                                        Text="{Binding CurrentWeather.Main.Temperature, StringFormat='{0:F1} C°'}"
+                                    />
+                                    <Span 
+                                        FontSize="Medium"
+                                        Text="{Binding CurrentWeather.Weather[0].Description, StringFormat='&#10;{0}'}"
+                                    />
+                                </FormattedString.Spans>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                </Grid>
+            </views:ActivityContainerView>
             <Grid Margin="80, 0">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
@@ -79,34 +84,39 @@
                 </Grid.ColumnDefinitions>
                 <views:MeasurementView
                     Icon="weather_windy"
-                    Value="{Binding CurrentWeather.Wind.Speed, StringFormat='{0} m/s'}"
+                    Value="{Binding CurrentWeather.Wind.Speed, StringFormat='{0} m/s', FallbackValue='0 m/s'}"
                     Text="Wind"
                 />
                 <views:MeasurementView
                     Grid.Column="1"
                     Icon="water_outline"
-                    Value="{Binding CurrentWeather.Main.Humidity, StringFormat='{0}%'}"
+                    Value="{Binding CurrentWeather.Main.Humidity, StringFormat='{0}%', FallbackValue='0%'}"
                     Text="Humidity"
                 />
                 <views:MeasurementView
                     Grid.Column="2"
                     Icon="weather_cloudy"
-                    Value="{Binding CurrentWeather.Clouds.All, StringFormat='{0}%'}"
+                    Value="{Binding CurrentWeather.Clouds.All, StringFormat='{0}%', FallbackValue='0%'}"
                     Text="Clouds"
                 />
             </Grid>
-            <Grid Margin="20">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
-                </Grid.ColumnDefinitions>
-                <views:ForecastView Weather="{Binding ForecastDayOne}"/>
-                <views:ForecastView Weather="{Binding ForecastDayTwo}" Grid.Column="1"/>
-                <views:ForecastView Weather="{Binding ForecastDayThree}" Grid.Column="2"/>
-                <views:ForecastView Weather="{Binding ForecastDayFour}" Grid.Column="3"/>
-            </Grid>
+            <views:ActivityContainerView
+                Margin="20"
+                IsLoading="{Binding IsFetchingForecast}"
+            >
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <views:ForecastView Weather="{Binding ForecastDayOne}"/>
+                    <views:ForecastView Weather="{Binding ForecastDayTwo}" Grid.Column="1"/>
+                    <views:ForecastView Weather="{Binding ForecastDayThree}" Grid.Column="2"/>
+                    <views:ForecastView Weather="{Binding ForecastDayFour}" Grid.Column="3"/>
+                </Grid>
+            </views:ActivityContainerView>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
