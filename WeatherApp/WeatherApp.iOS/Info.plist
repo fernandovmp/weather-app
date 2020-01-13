@@ -23,9 +23,9 @@
 	<key>MinimumOSVersion</key>
 	<string>8.0</string>
 	<key>CFBundleDisplayName</key>
-	<string>WeatherApp</string>
+	<string>Weather</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.companyname.WeatherApp</string>
+	<string>com.fernandovmp.WeatherApp</string>
 	<key>CFBundleVersion</key>
 	<string>1.0</string>
 	<key>UILaunchStoryboardName</key>
