@@ -53,23 +53,5 @@ namespace WeatherAppTest
 
             weatherViewModelMock.Forecast.Should().HaveCount(4);
         }
-        [Fact]
-        public async Task DayForecastCountShouldBeEight()
-        {
-            HttpMessageHandler handlerMock = MockHttpMessageHandler.CreateMock(
-                new HttpResponseMessage()
-                {
-                    StatusCode = HttpStatusCode.OK,
-                    Content = new StringContent(
-                        FromEmbedResources.ReadText("ResponseMock.ForecastResponse.json"))
-                });
-            var httpClient = new HttpClient(handlerMock);
-            IWeatherService weatherService = new WeatherService(httpClient, "");
-            WeatherViewModel weatherViewModelMock = MockWeatherViewModel.CreateMock(weatherService);
-
-            await weatherViewModelMock.GetForecastAsync();
-
-            weatherViewModelMock.DayForecast.Should().HaveCount(8);
-        }
     }
 }
