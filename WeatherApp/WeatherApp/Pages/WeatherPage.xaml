@@ -21,7 +21,7 @@
     <ContentPage.Content>
         <StackLayout>
             <views:ActivityContainerView
-                Margin="40, 40, 40, 20"
+                Margin="40, 40, 40, 5"
                 IsLoading="{Binding IsFetchingWeather}"
             >
                 <Grid>
@@ -76,7 +76,7 @@
                     </Label>
                 </Grid>
             </views:ActivityContainerView>
-            <Grid Margin="80, 0">
+            <Grid Margin="40, 0">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
