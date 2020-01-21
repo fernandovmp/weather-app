@@ -26,7 +26,6 @@ namespace WeatherApp.ViewModels
         public WeatherViewModel(IWeatherService weatherService)
         {
             _weatherService = weatherService;
-            DayForecast = new ObservableCollection<WeatherData>();
             Forecast = new ObservableCollection<WeatherData>();
             Task.Run(() => GetWeatherAsync());
             Task.Run(() => GetForecastAsync());
@@ -42,7 +41,6 @@ namespace WeatherApp.ViewModels
             get => _city;
             private set => SetProperty(ref _city, value);
         }
-        public ObservableCollection<WeatherData> DayForecast { get; }
         public ObservableCollection<WeatherData> Forecast { get; }
         public WeatherData ForecastDayOne
         {
@@ -152,16 +150,9 @@ namespace WeatherApp.ViewModels
             Forecast forecast = await _weatherService.GetWeatherForecastAsync(coordinates);
             City = forecast.City;
             Forecast.Clear();
-            DayForecast.Clear();
-            var currentData = DateTime.Now;
             foreach (WeatherData weather in forecast.List)
             {
                 var date = DateTime.Parse(weather.DateText);
-                if (date.Day == currentData.Day)
-                {
-                    DayForecast.Add(weather);
-                    continue;
-                }
                 if (date.Hour == 0)
                 {
                     Forecast.Add(weather);
