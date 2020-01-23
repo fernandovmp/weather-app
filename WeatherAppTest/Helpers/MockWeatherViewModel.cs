@@ -12,7 +12,7 @@ namespace WeatherAppTest.Helpers
 {
     internal static class MockWeatherViewModel
     {
-        internal static WeatherViewModel CreateMock(IWeatherService weatherService)
+        internal static Mock<WeatherViewModel> CreateMock(IWeatherService weatherService)
         {
             var weatherViewModelMock = new Mock<WeatherViewModel>(MockBehavior.Strict, weatherService);
             weatherViewModelMock.Protected()
@@ -22,7 +22,7 @@ namespace WeatherAppTest.Helpers
                     Lat = 51.51f,
                     Lon = -0.13f
                 }).Verifiable();
-            return weatherViewModelMock.Object;
+            return weatherViewModelMock;
         }
     }
 }

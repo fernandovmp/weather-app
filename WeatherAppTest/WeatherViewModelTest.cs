@@ -29,7 +29,7 @@ namespace WeatherAppTest
                 });
             var httpClient = new HttpClient(handlerMock);
             IWeatherService weatherService = new WeatherService(httpClient, "");
-            WeatherViewModel weatherViewModelMock = MockWeatherViewModel.CreateMock(weatherService);
+            WeatherViewModel weatherViewModelMock = MockWeatherViewModel.CreateMock(weatherService).Object;
 
             await weatherViewModelMock.GetWeatherAsync();
 
@@ -47,11 +47,11 @@ namespace WeatherAppTest
                 });
             var httpClient = new HttpClient(handlerMock);
             IWeatherService weatherService = new WeatherService(httpClient, "");
-            WeatherViewModel weatherViewModelMock = MockWeatherViewModel.CreateMock(weatherService);
+            WeatherViewModel weatherViewModelMock = MockWeatherViewModel.CreateMock(weatherService).Object;
 
             await weatherViewModelMock.GetForecastAsync();
 
-            weatherViewModelMock.Forecast.Should().HaveCount(4);
+            weatherViewModelMock.Forecast.Should().HaveCount(5);
         }
     }
 }

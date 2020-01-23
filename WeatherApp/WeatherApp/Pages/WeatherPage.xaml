@@ -110,11 +110,13 @@
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
                     <views:ForecastView Weather="{Binding ForecastDayOne}"/>
                     <views:ForecastView Weather="{Binding ForecastDayTwo}" Grid.Column="1"/>
                     <views:ForecastView Weather="{Binding ForecastDayThree}" Grid.Column="2"/>
                     <views:ForecastView Weather="{Binding ForecastDayFour}" Grid.Column="3"/>
+                    <views:ForecastView Weather="{Binding ForecastDayFive}" Grid.Column="4"/>
                 </Grid>
             </views:ActivityContainerView>
         </StackLayout>

@@ -15,8 +15,10 @@ namespace WeatherApp.Pages
         public WeatherPage()
         {
             InitializeComponent();
-            BindingContext = (Application.Current as App).Container
-                .Resolve(typeof(WeatherViewModel), DryIoc.IfUnresolved.ReturnDefault);
+            WeatherViewModel weatherViewModel = (Application.Current as App).Container
+                .Resolve(typeof(WeatherViewModel), DryIoc.IfUnresolved.ReturnDefault) as WeatherViewModel;
+            BindingContext = weatherViewModel;
+            weatherViewModel.FetchWeatherAndForecastCommand.Execute(null);
         }
     }
 }

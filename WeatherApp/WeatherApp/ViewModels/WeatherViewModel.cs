@@ -19,6 +19,7 @@ namespace WeatherApp.ViewModels
         private WeatherData _forecastDayTwo;
         private WeatherData _forecastDayThree;
         private WeatherData _forecastDayFour;
+        private WeatherData _forecastDayFive;
         private City _city;
         private bool _isFetchingWeather;
         private bool _isFetchingForecast;
@@ -27,8 +28,7 @@ namespace WeatherApp.ViewModels
         {
             _weatherService = weatherService;
             Forecast = new ObservableCollection<WeatherData>();
-            Task.Run(() => GetWeatherAsync());
-            Task.Run(() => GetForecastAsync());
+            FetchWeatherAndForecastCommand = new Command(FetchWeatherAndForecast);
         }
 
         public WeatherData CurrentWeather
@@ -62,6 +62,11 @@ namespace WeatherApp.ViewModels
             get => _forecastDayFour;
             set => SetProperty(ref _forecastDayFour, value);
         }
+        public WeatherData ForecastDayFive
+        {
+            get => _forecastDayFive;
+            set => SetProperty(ref _forecastDayFive, value);
+        }
         public bool IsFetchingWeather
         {
             get => _isFetchingWeather;
@@ -72,6 +77,7 @@ namespace WeatherApp.ViewModels
             get => _isFetchingForecast;
             set => SetProperty(ref _isFetchingForecast, value);
         }
+        public Command FetchWeatherAndForecastCommand { get; }
 
         protected virtual async Task<Coordinates> GetCoordinatesAsync()
         {
@@ -125,6 +131,12 @@ namespace WeatherApp.ViewModels
 
         }
 
+        private void FetchWeatherAndForecast()
+        {
+            Task.Run(() => GetWeatherAsync());
+            Task.Run(() => GetForecastAsync());
+        }
+
         public async Task GetWeatherAsync()
         {
             IsFetchingWeather = true;
@@ -162,6 +174,7 @@ namespace WeatherApp.ViewModels
             ForecastDayTwo = Forecast[1];
             ForecastDayThree = Forecast[2];
             ForecastDayFour = Forecast[3];
+            ForecastDayFive = Forecast[4];
             IsFetchingForecast = false;
         }
 
